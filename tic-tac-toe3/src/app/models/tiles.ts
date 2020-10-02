@@ -3,6 +3,7 @@ export class Tiles {
     cols: number;
     rows: number;
     color: string; 
+    font: number;
     xCoord: number;
     yCoord: number;
     position: number;

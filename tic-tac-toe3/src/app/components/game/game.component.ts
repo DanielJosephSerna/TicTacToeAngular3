@@ -44,15 +44,15 @@ export class GameComponent implements OnInit {
       this.game = data;
 
       this.tiles = [
-        {text: this.game.board.boardArr[0][0], cols: 1, rows: 1, color: 'lightblue', xCoord: 0, yCoord: 0, position: 0},
-        {text: this.game.board.boardArr[0][2], cols: 1, rows: 1, color: 'lightblue', xCoord: 0, yCoord: 2, position: 1},
-        {text: this.game.board.boardArr[0][4], cols: 1, rows: 1, color: 'lightblue', xCoord: 0, yCoord: 4, position: 2},
-        {text: this.game.board.boardArr[2][0], cols: 1, rows: 1, color: 'lightblue', xCoord: 2, yCoord: 0, position: 3},
-        {text: this.game.board.boardArr[2][2], cols: 1, rows: 1, color: 'lightblue', xCoord: 2, yCoord: 2, position: 4},
-        {text: this.game.board.boardArr[2][4], cols: 1, rows: 1, color: 'lightblue', xCoord: 2, yCoord: 4, position: 5},
-        {text: this.game.board.boardArr[4][0], cols: 1, rows: 1, color: 'lightblue', xCoord: 4, yCoord: 0, position: 6},
-        {text: this.game.board.boardArr[4][2], cols: 1, rows: 1, color: 'lightblue', xCoord: 4, yCoord: 2, position: 7},
-        {text: this.game.board.boardArr[4][4], cols: 1, rows: 1, color: 'lightblue', xCoord: 4, yCoord: 4, position: 8}
+        {text: this.game.board.boardArr[0][0], cols: 1, rows: 1, color: 'lightblue', font: 72, xCoord: 0, yCoord: 0, position: 0},
+        {text: this.game.board.boardArr[0][2], cols: 1, rows: 1, color: 'lightblue', font: 72, xCoord: 0, yCoord: 2, position: 1},
+        {text: this.game.board.boardArr[0][4], cols: 1, rows: 1, color: 'lightblue', font: 72, xCoord: 0, yCoord: 4, position: 2},
+        {text: this.game.board.boardArr[2][0], cols: 1, rows: 1, color: 'lightblue', font: 72, xCoord: 2, yCoord: 0, position: 3},
+        {text: this.game.board.boardArr[2][2], cols: 1, rows: 1, color: 'lightblue', font: 72, xCoord: 2, yCoord: 2, position: 4},
+        {text: this.game.board.boardArr[2][4], cols: 1, rows: 1, color: 'lightblue', font: 72, xCoord: 2, yCoord: 4, position: 5},
+        {text: this.game.board.boardArr[4][0], cols: 1, rows: 1, color: 'lightblue', font: 72, xCoord: 4, yCoord: 0, position: 6},
+        {text: this.game.board.boardArr[4][2], cols: 1, rows: 1, color: 'lightblue', font: 72, xCoord: 4, yCoord: 2, position: 7},
+        {text: this.game.board.boardArr[4][4], cols: 1, rows: 1, color: 'lightblue', font: 72, xCoord: 4, yCoord: 4, position: 8}
       ];
 
     });
@@ -115,15 +115,15 @@ export class GameComponent implements OnInit {
     this.game.playerList[1].ymove = 0;
 
     this.tiles =  [
-      {text: this.game.board.boardArr[0][0], cols: 1, rows: 1, color: 'lightblue', xCoord: 0, yCoord: 0, position: 0},
-      {text: this.game.board.boardArr[0][2], cols: 1, rows: 1, color: 'lightblue', xCoord: 0, yCoord: 2, position: 1},
-      {text: this.game.board.boardArr[0][4], cols: 1, rows: 1, color: 'lightblue', xCoord: 0, yCoord: 4, position: 2},
-      {text: this.game.board.boardArr[2][0], cols: 1, rows: 1, color: 'lightblue', xCoord: 2, yCoord: 0, position: 3},
-      {text: this.game.board.boardArr[2][2], cols: 1, rows: 1, color: 'lightblue', xCoord: 2, yCoord: 2, position: 4},
-      {text: this.game.board.boardArr[2][4], cols: 1, rows: 1, color: 'lightblue', xCoord: 2, yCoord: 4, position: 5},
-      {text: this.game.board.boardArr[4][0], cols: 1, rows: 1, color: 'lightblue', xCoord: 4, yCoord: 0, position: 6},
-      {text: this.game.board.boardArr[4][2], cols: 1, rows: 1, color: 'lightblue', xCoord: 4, yCoord: 2, position: 7},
-      {text: this.game.board.boardArr[4][4], cols: 1, rows: 1, color: 'lightblue', xCoord: 4, yCoord: 4, position: 8}
+      {text: this.game.board.boardArr[0][0], cols: 1, rows: 1, color: 'lightblue', font: 72, xCoord: 0, yCoord: 0, position: 0},
+      {text: this.game.board.boardArr[0][2], cols: 1, rows: 1, color: 'lightblue', font: 72, xCoord: 0, yCoord: 2, position: 1},
+      {text: this.game.board.boardArr[0][4], cols: 1, rows: 1, color: 'lightblue', font: 72, xCoord: 0, yCoord: 4, position: 2},
+      {text: this.game.board.boardArr[2][0], cols: 1, rows: 1, color: 'lightblue', font: 72, xCoord: 2, yCoord: 0, position: 3},
+      {text: this.game.board.boardArr[2][2], cols: 1, rows: 1, color: 'lightblue', font: 72, xCoord: 2, yCoord: 2, position: 4},
+      {text: this.game.board.boardArr[2][4], cols: 1, rows: 1, color: 'lightblue', font: 72, xCoord: 2, yCoord: 4, position: 5},
+      {text: this.game.board.boardArr[4][0], cols: 1, rows: 1, color: 'lightblue', font: 72, xCoord: 4, yCoord: 0, position: 6},
+      {text: this.game.board.boardArr[4][2], cols: 1, rows: 1, color: 'lightblue', font: 72, xCoord: 4, yCoord: 2, position: 7},
+      {text: this.game.board.boardArr[4][4], cols: 1, rows: 1, color: 'lightblue', font: 72, xCoord: 4, yCoord: 4, position: 8}
     ];
   }
 

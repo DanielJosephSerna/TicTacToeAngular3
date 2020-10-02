@@ -14,8 +14,9 @@
                 [colspan]="tile.cols"
                 [rowspan]="tile.rows"
                 [style.background]="tile.color"
+                [ngStyle]="{'font-size': tile.font + 'px'}"
                 (click)="move(tile.xCoord, tile.yCoord, tile.position)">
-            {{tile.text}}
+                    {{tile.text}}
         </mat-grid-tile>
     </mat-grid-list>
     </div>
