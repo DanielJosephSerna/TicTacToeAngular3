@@ -1,0 +1,29 @@
+<div>
+    <h1>Tic Tac Toe Level 1</h1>
+
+    <div class="pt-2"></div>
+    <span><b>Player 1:</b> {{game.playerList[0].type}}</span><br>
+
+    <div class="pt-2"></div>
+    <span><b>Player 2:</b> {{game.playerList[1].type}}</span>
+    
+    <div class="board-width">
+        <mat-grid-list cols="3" rowHeight="100px" gutterSize="4px">
+        <mat-grid-tile 
+                *ngFor="let tile of tiles"
+                [colspan]="tile.cols"
+                [rowspan]="tile.rows"
+                [style.background]="tile.color"
+                (click)="move(tile.xCoord, tile.yCoord, tile.position)">
+            {{tile.text}}
+        </mat-grid-tile>
+    </mat-grid-list>
+    </div>
+    <div class="pt-2"></div>
+
+    <button class="btn btn-primary new-game"
+            (click)="resetGame()">Reset Game</button>
+    <div class="pt-2"></div>
+
+    <h4 *ngIf="gameOver"><b>Winner:</b> {{game.winnerPlayer}}</h4>
+</div>

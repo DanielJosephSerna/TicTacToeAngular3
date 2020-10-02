@@ -1,0 +1,9 @@
+.board-width {
+    width: 300px;
+    cursor: pointer;
+    padding: 0 8px 8px 0;
+}
+
+.new-game {
+    width: 50%;
+}
