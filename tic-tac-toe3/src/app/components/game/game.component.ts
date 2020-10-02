@@ -104,7 +104,7 @@ export class GameComponent implements OnInit {
       [" ", "|", " ", "|", " "]
     ];
     this.game.lastPlayer.lastPiece = "O";
-    this.game.lastPlayer.lastPlayer = "COMPUTER";
+    this.game.lastPlayer.previousPlayer = "COMPUTER";
     this.game.playerList[0].type = "HUMAN1";
     this.game.playerList[0].piece = "X";
     this.game.playerList[0].xmove = 0;

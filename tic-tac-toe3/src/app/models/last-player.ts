@@ -1,4 +1,4 @@
 export class LastPlayer {
-    lastPlayer: string;
+    previousPlayer: string;
     lastPiece: string;
 }
