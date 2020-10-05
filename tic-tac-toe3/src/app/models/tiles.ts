@@ -4,7 +4,5 @@ export class Tiles {
     rows: number;
     color: string; 
     font: number;
-    xCoord: number;
-    yCoord: number;
     position: number;
 }

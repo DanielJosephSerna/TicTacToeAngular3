@@ -1,3 +1,3 @@
 export class Board {
-    boardArr: string[][];
+    boardArr: string[];
 }
