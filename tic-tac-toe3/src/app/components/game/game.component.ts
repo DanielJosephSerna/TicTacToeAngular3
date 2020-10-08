@@ -11,7 +11,6 @@ import { GameService } from 'src/app/services/game.service';
 export class GameComponent implements OnInit {
 
   game: Game;
-  
   tiles: Tiles[];
 
   constructor(private gameService: GameService) { }
@@ -21,7 +20,14 @@ export class GameComponent implements OnInit {
   }
 
   get gameOver(): boolean {
-    if(this.game.stateOfPlay !== "ONGOING") {
+    if(this.game.stateOfPlay !== "ONGOING" && this.game.stateOfPlay !== "TIE") {
+
+      for(let i = 0; i < 3; i=i+1) {
+        this.tiles[this.game.winningLine[i]].color = 'palegreen';
+      }
+
+      return true;
+    } else if(this.game.stateOfPlay !== "ONGOING" && this.game.stateOfPlay === "TIE") {
       return true;
     }
     return false;
@@ -57,13 +63,9 @@ export class GameComponent implements OnInit {
         this.game.playerList[0].move = tempPosition;
 
         this.gameService.performHumanAndComputerMove(this.game).subscribe(postData => {
-          console.log(postData);
 
           for(let i = 0; i < 9; i=i+1) {
             this.tiles[i].text = postData.board.boardArr[i];
-            if(this.tiles[i].text !== " ") {
-              this.tiles[i].color = "lightcoral";
-            }
           }
 
           this.game = postData;
@@ -78,6 +80,7 @@ export class GameComponent implements OnInit {
 
     this.game.winnerPiece = " "; // reset the game model
     this.game.winnerPlayer = " ";
+    this.game.winningLine = [0, 0, 0];
     this.game.typeOfGame = "HUMAN VS COMPUTER";
     this.game.stateOfPlay = "ONGOING";
     this.game.board.boardArr = [" ", " ", " ", " ", " ", " ", " ", " ", " "];

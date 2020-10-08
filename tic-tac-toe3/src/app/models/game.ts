@@ -10,4 +10,5 @@ export class Game {
     typeOfGame: string;
     winnerPlayer: string;
     winnerPiece: string;
+    winningLine: number[];
 }
