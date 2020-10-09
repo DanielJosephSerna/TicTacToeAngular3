@@ -9,8 +9,7 @@
             class="radio-button" 
             *ngFor="let choice of choices" 
             [value]="choice"
-            [disabled]="disableAfterFirstMove()"
-            (click)="getGame(gameChoice)">
+            [disabled]="disableAfterFirstMove()">
                 {{choice}}
             </mat-radio-button>
         </mat-radio-group>
