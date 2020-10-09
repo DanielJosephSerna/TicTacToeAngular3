@@ -2,11 +2,27 @@
     <h1>Tic Tac Toe Level 1</h1>
 
     <div class="pt-2"></div>
-    <span><b>Player 1:</b> {{game.playerList[0].type}}</span><br>
+    <div>
+        <label>Pick a game type:</label>
+        <mat-radio-group class="radio-group" [(ngModel)]="gameChoice">
+            <mat-radio-button 
+            class="radio-button" 
+            *ngFor="let choice of choices" 
+            [value]="choice"
+            [disabled]="disableAfterFirstMove()"
+            (click)="getGame(gameChoice)">
+                {{choice}}
+            </mat-radio-button>
+        </mat-radio-group>
+    </div>
 
     <div class="pt-2"></div>
-    <span><b>Player 2:</b> {{game.playerList[1].type}}</span>
+    <span><b>Player 1:</b> {{playerOne}}</span><br>
+
+    <div class="pt-2"></div>
+    <span><b>Player 2:</b> {{playerTwo}}</span>
     
+    <div class="pt-2"></div>
     <div class="board-width">
         <mat-grid-list cols="3" rowHeight="100px" gutterSize="4px">
         <mat-grid-tile 
