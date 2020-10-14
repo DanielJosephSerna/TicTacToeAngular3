@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Game } from 'src/app/models/game';
 import { Tiles } from 'src/app/models/tiles';
 import { GameService } from 'src/app/services/game.service';
@@ -9,153 +10,137 @@ import { GameService } from 'src/app/services/game.service';
   styleUrls: ['./game.component.css']
 })
 export class GameComponent implements OnInit {
-  
-  choices: string[] = ['Human VS Computer', 'Human VS Human'];
-  gameChoice: string;
-  firstMove: boolean;
+
+  controlsFormGroup: FormGroup;
+  radioExample: FormControl = new FormControl;
+  radioTouched: boolean = false;
+
   playerOne: string;
   playerTwo: string;
-  state: string;
   game: Game;
   tiles: Tiles[];
   
 
-  constructor(private gameService: GameService) { }
+  constructor(private fb: FormBuilder, private gameService: GameService) { }
 
   ngOnInit() {
-    // this.getGame();
 
-    this.gameChoice = '';
-    this.firstMove = false;
-    this.playerOne = '';
-    this.playerTwo = '';
-    this.state = '';
+    this.controlsFormGroup = this.fb.group({
+      radioExample: this.radioExample
+    })
 
-    this.tiles = [
-      {text: ' ', cols: 1, rows: 1, color: 'lightblue', font: 72, position: 0},
-      {text: ' ', cols: 1, rows: 1, color: 'lightblue', font: 72, position: 1},
-      {text: ' ', cols: 1, rows: 1, color: 'lightblue', font: 72, position: 2},
-      {text: ' ', cols: 1, rows: 1, color: 'lightblue', font: 72, position: 3},
-      {text: ' ', cols: 1, rows: 1, color: 'lightblue', font: 72, position: 4},
-      {text: ' ', cols: 1, rows: 1, color: 'lightblue', font: 72, position: 5},
-      {text: ' ', cols: 1, rows: 1, color: 'lightblue', font: 72, position: 6},
-      {text: ' ', cols: 1, rows: 1, color: 'lightblue', font: 72, position: 7},
-      {text: ' ', cols: 1, rows: 1, color: 'lightblue', font: 72, position: 8}
-    ];
-  }
-
-  disableAfterFirstMove() {
-    if(this.firstMove) {
-
-      return true;
-    }
-    return false
+    this.resetGame();
   }
 
   get gameOver(): boolean {
-    if(this.state === "OVER") {
-
-      for(let i = 0; i < 3; i=i+1) {
-        this.tiles[this.game.winningLine[i]].color = 'palegreen';
-      }
+    if(this.game.status === "OVER") {
 
       return true;
-    } else if(this.state === "TIE") {
+    } else if(this.game.status === "TIE") {
 
       return true;
     }
     return false;
   }
 
-  get getGame(): Game {
-
-    if(this.gameChoice === 'Human VS Computer') {
-
-      this.gameService.getNewHumanComputerGame().subscribe( data => {
-
-        this.game = data;console.log("GAME: " + this.game);
-      });
-    } else {
-
-      console.log("Need backend implementation");
-    }
+  getDummy2() {
+    this.controlsFormGroup.reset();
     
-    return this.game;
   }
 
-  move(tempPosition: number) {
+  setUpGame() {
 
-    let moveGame: Game;
-    if(this.gameChoice !== '') {
+    this.controlsFormGroup.get('radioExample').valueChanges.subscribe(value => {
 
-      if(this.firstMove == false) {
+      this.radioTouched = true;
+
+      if(value == 'HVC') {
+
+        this.gameService.getNewHumanComputerGame().subscribe( data => {
+          this.game = data;
+
+          this.tiles = [
+            {text: this.game.board.boardArr[0], cols: 1, rows: 1, color: 'lightblue', font: 72, position: 0},
+            {text: this.game.board.boardArr[1], cols: 1, rows: 1, color: 'lightblue', font: 72, position: 1},
+            {text: this.game.board.boardArr[2], cols: 1, rows: 1, color: 'lightblue', font: 72, position: 2},
+            {text: this.game.board.boardArr[3], cols: 1, rows: 1, color: 'lightblue', font: 72, position: 3},
+            {text: this.game.board.boardArr[4], cols: 1, rows: 1, color: 'lightblue', font: 72, position: 4},
+            {text: this.game.board.boardArr[5], cols: 1, rows: 1, color: 'lightblue', font: 72, position: 5},
+            {text: this.game.board.boardArr[6], cols: 1, rows: 1, color: 'lightblue', font: 72, position: 6},
+            {text: this.game.board.boardArr[7], cols: 1, rows: 1, color: 'lightblue', font: 72, position: 7},
+            {text: this.game.board.boardArr[8], cols: 1, rows: 1, color: 'lightblue', font: 72, position: 8}
+          ];
+          
+          this.playerOne = this.game.playerList[0].type;
+          this.playerTwo = this.game.playerList[1].type;
+        });
+      } else {
+
         
-        moveGame = this.getGame;console.log("Move " + moveGame);
-        this.firstMove = true;
-
-        this.tiles = [
-          {text: moveGame.board.boardArr[0], cols: 1, rows: 1, color: 'lightblue', font: 72, position: 0},
-          {text: moveGame.board.boardArr[1], cols: 1, rows: 1, color: 'lightblue', font: 72, position: 1},
-          {text: moveGame.board.boardArr[2], cols: 1, rows: 1, color: 'lightblue', font: 72, position: 2},
-          {text: moveGame.board.boardArr[3], cols: 1, rows: 1, color: 'lightblue', font: 72, position: 3},
-          {text: moveGame.board.boardArr[4], cols: 1, rows: 1, color: 'lightblue', font: 72, position: 4},
-          {text: moveGame.board.boardArr[5], cols: 1, rows: 1, color: 'lightblue', font: 72, position: 5},
-          {text: moveGame.board.boardArr[6], cols: 1, rows: 1, color: 'lightblue', font: 72, position: 6},
-          {text: moveGame.board.boardArr[7], cols: 1, rows: 1, color: 'lightblue', font: 72, position: 7},
-          {text: moveGame.board.boardArr[8], cols: 1, rows: 1, color: 'lightblue', font: 72, position: 8}
-        ];
-
-        this.playerOne = moveGame.playerList[0].type;
-        this.playerTwo = moveGame.playerList[1].type;
-        this.state = moveGame.stateOfPlay;
       }
+    });
+  }
+
+  move(boardPosition: number) {
+
+    if(this.radioTouched && this.game != null) {
 
       if(!this.gameOver) {
 
-        if(this.tiles[tempPosition].text === " ") {
+        if(this.tiles[boardPosition].text === " ") {
 
-          // make service call for /play/human-computer
-          this.game.playerList[0].move = tempPosition;
+          let countSpace = 0; let gameSpace = 0;
 
-          this.gameService.performHumanAndComputerMove(this.game).subscribe(postData => {
+          this.game.playerList[1].move = boardPosition;
+          this.game.playerList[0].move = boardPosition;
 
-            for(let i = 0; i < 9; i=i+1) {
-              this.tiles[i].text = postData.board.boardArr[i];
-            }
+          if(this.controlsFormGroup.get('radioExample').value == 'HVC') {
 
-            this.game = postData;
-          });
+            this.gameService.performHumanAndComputerMove(this.game).subscribe(postData => {
 
-        }
+              for(let i = 0; i < 9; i=i+1) {
 
-      }
+                this.tiles[i].text = postData.board.boardArr[i];
+              }
 
-    }
+              this.game = postData;
+
+              for(let i = 0; i < 9; i=i+1) {
+            
+                if(this.tiles[i].text === " ") {
     
+                  countSpace = countSpace + 1;
+                }
+    
+                if(this.game.board.boardArr[i] == ' ') {
+                  gameSpace = gameSpace + 1;
+                }
+              }
+
+              if(postData.status === "OVER") {
+
+                for(let i = 0; i < 3; i=i+1) {
+
+                  this.tiles[postData.winningLine[i]].color = 'palegreen';
+                }
+              }
+            });
+          } else {
+            
+            
+          }
+        }
+      }
+    } 
   }
 
   resetGame() {
 
-    this.gameChoice = '';
-    this.firstMove = false;
-    this.playerOne = '';
-    this.playerTwo = '';
-    this.state = '';
+    this.controlsFormGroup.reset();
 
-    // this.game.winnerPiece = " "; // reset the game model
-    // this.game.winnerPlayer = " ";
-    // this.game.winningLine = [0, 0, 0];
-    // this.game.typeOfGame = "HUMAN VS COMPUTER";
-    // this.game.stateOfPlay = "ONGOING";
-    // this.game.board.boardArr = [" ", " ", " ", " ", " ", " ", " ", " ", " "];
-    // this.game.lastPlayer.lastPiece = "O";
-    // this.game.lastPlayer.previousPlayer = "COMPUTER";
-    // this.game.playerList[0].type = "HUMAN1";
-    // this.game.playerList[0].piece = "X";
-    // this.game.playerList[0].move = 0;
-    // this.game.playerList[1].type = "COMPUTER";
-    // this.game.playerList[1].piece = "O";
-    // this.game.playerList[1].move = 0;
+    this.playerOne = ' ';
+    this.playerTwo = ' ';
+    this.game = null;
 
     this.tiles = [
       {text: ' ', cols: 1, rows: 1, color: 'lightblue', font: 72, position: 0},
@@ -169,5 +154,4 @@ export class GameComponent implements OnInit {
       {text: ' ', cols: 1, rows: 1, color: 'lightblue', font: 72, position: 8}
     ];
   }
-
 }

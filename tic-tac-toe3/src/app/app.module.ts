@@ -7,7 +7,7 @@ import { GameService } from './services/game.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,7 +19,7 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     MaterialModule,
     BrowserAnimationsModule,
-    FormsModule
+    ReactiveFormsModule
   ],
   providers: [GameService],
   bootstrap: [AppComponent]
