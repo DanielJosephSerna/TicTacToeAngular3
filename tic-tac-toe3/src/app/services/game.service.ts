@@ -19,10 +19,18 @@ export class GameService {
   constructor(private http: HttpClient) { }
 
   getNewHumanComputerGame(): Observable<Game> {
-    return this.http.get<Game>(this.url1+'/human-computer');
+    return this.http.get<Game>(this.url1 + '/human-computer');
+  }
+
+  getNewHumanHumanGame(): Observable<Game> {
+    return this.http.get<Game>(this.url1 + '/human-human');
   }
 
   performHumanAndComputerMove(postGame: Game): Observable<Game> {
-    return this.http.post<any>(this.url2+'/human-computer', postGame);
+    return this.http.post<any>(this.url2 + '/human-computer', postGame);
+  }
+
+  performHumanAndHumanMove(postGame: Game): Observable<Game> {
+    return this.http.post<any>(this.url2 + '/human-human', postGame);
   }
 }
