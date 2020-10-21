@@ -1,5 +1,5 @@
 <div>
-    <h1>Tic Tac Toe Level 1</h1>
+    <h1>Tic Tac Toe Level 2</h1>
 
     <div class="pt-2"></div>
     <form [formGroup]="controlsFormGroup" class="mb-3">
@@ -9,9 +9,18 @@
                     class="form-check-input"
                     formControlName="radioExample"
                     (click)="setUpHumanComputerGame()"
-                    value="HVC" />Human VS Computer
+                    value="HVCE" />Human VS Computer (Easy)
             </label>
-        </div>
+        </div><br>
+        <div class="form-check-inline">
+            <label class="form-check-label">
+                <input type="radio"
+                    class="form-check-input"
+                    formControlName="radioExample"
+                    (click)="setUpHumanComputerGame()"
+                    value="HVCM" />Human VS Computer (Medium)
+            </label>
+        </div><br>
         <div class="form-check-inline">
             <label class="form-check-label">
                 <input type="radio" 

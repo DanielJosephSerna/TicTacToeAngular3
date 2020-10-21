@@ -78,7 +78,7 @@ export class GameComponent implements OnInit {
 
       this.radioTouched = true;
 
-      if (value === 'HVC') {
+      if (value === 'HVCE' || value === 'HVCM') {
 
         this.gameService.getNewHumanComputerGame().subscribe( data => {
           this.game = data;
@@ -113,9 +113,33 @@ export class GameComponent implements OnInit {
           this.game.playerList[1].move = boardPosition;
           this.game.playerList[0].move = boardPosition;
 
-          if (this.controlsFormGroup.get('radioExample').value === 'HVC') {
+          if (this.controlsFormGroup.get('radioExample').value === 'HVCE') {
 
-            this.gameService.performHumanAndComputerMove(this.game).subscribe(postData => {
+            this.gameService.performHumanAndEasyComputerMove(this.game).subscribe(postData => {
+
+              for (let i = 0; i < 9; i = i + 1) {
+
+                this.tiles[i].text = postData.board.boardArr[i];
+              }
+
+              this.game = postData;
+
+              if (postData.status === 'OVER') {
+
+                for (let i = 0; i < 3; i = i + 1) {
+
+                  this.tiles[postData.winningLine[i]].color = 'palegreen';
+                }
+              } else if (postData.status === 'TIE') {
+                for (let i = 0; i < 9; i = i + 1) {
+
+                  this.tiles[i].color = 'silver';
+                }
+              }
+            });
+          } else if (this.controlsFormGroup.get('radioExample').value === 'HVCM') {
+
+            this.gameService.performHumanAndMediumComputerMove(this.game).subscribe(postData => {
 
               for (let i = 0; i < 9; i = i + 1) {
 

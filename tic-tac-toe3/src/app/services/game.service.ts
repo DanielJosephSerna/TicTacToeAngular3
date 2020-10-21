@@ -26,8 +26,12 @@ export class GameService {
     return this.http.get<Game>(this.url1 + '/human-human');
   }
 
-  performHumanAndComputerMove(postGame: Game): Observable<Game> {
-    return this.http.post<any>(this.url2 + '/human-computer', postGame);
+  performHumanAndEasyComputerMove(postGame: Game): Observable<Game> {
+    return this.http.post<any>(this.url2 + '/human-computer-easy', postGame);
+  }
+
+  performHumanAndMediumComputerMove(postGame: Game): Observable<Game> {
+    return this.http.post<any>(this.url2 + '/human-computer-medium', postGame);
   }
 
   performHumanAndHumanMove(postGame: Game): Observable<Game> {
