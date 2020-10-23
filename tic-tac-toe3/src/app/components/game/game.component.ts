@@ -81,6 +81,7 @@ export class GameComponent implements OnInit {
       if (value === 'HVCE' || value === 'HVCM') {
 
         this.gameService.getNewHumanComputerGame().subscribe( data => {
+          console.log(data);
           this.game = data;
 
           this.tiles = [

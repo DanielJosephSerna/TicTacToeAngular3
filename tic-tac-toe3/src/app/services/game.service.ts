@@ -12,9 +12,10 @@ export class GameService {
   url1 = 'http://localhost:8080/setup-game';
   url2 = 'http://localhost:8080/play';
   // /setup-game/human-computer
-  // /setup-game/computer-human
   // /setup-game/human-human
-  // /play/human-computer
+  // /human-computer-easy
+  // /human-computer-medium
+  // /human-human
 
   constructor(private http: HttpClient) { }
 
