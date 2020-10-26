@@ -25,7 +25,7 @@ export class GameComponent implements OnInit {
   ngOnInit(): void {
 
     this.controlsFormGroup = this.fb.group({
-      radioExample: ['HVC', [Validators.required]]
+      radioExample: ['', [Validators.required]]
     });
 
     this.resetGame();
