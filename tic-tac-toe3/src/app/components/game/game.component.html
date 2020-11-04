@@ -1,4 +1,4 @@
-<div>
+<!-- <div>
     <h1>Tic Tac Toe Level 2</h1>
 
     <div class="pt-2"></div>
@@ -41,7 +41,7 @@
     <div class="pt-2"></div>
     <div class="board-width">
         <mat-grid-list cols="3" rowHeight="100px" gutterSize="4px">
-        <mat-grid-tile 
+            <mat-grid-tile 
                 *ngFor="let tile of tiles"
                 [colspan]="tile.cols"
                 [rowspan]="tile.rows"
@@ -49,8 +49,8 @@
                 [ngStyle]="{'font-size': tile.font + 'px'}"
                 (click)="move(tile.position)">
                     {{tile.text}}
-        </mat-grid-tile>
-    </mat-grid-list>
+            </mat-grid-tile>
+        </mat-grid-list>
     </div>
     <div class="pt-2"></div>
 
@@ -58,4 +58,4 @@
             (click)="resetGame()">Reset Game</button>
     <div class="pt-2"></div>
 
-</div>
+</div> -->

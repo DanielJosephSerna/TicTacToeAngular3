@@ -23,6 +23,14 @@ export class MoveService {
   }
 
   setUpHumanHumanGame(): Observable<BestOf> {
-    return this.http.get<BestOf>(this.url1 + '/setup/humna-human');
+    return this.http.get<BestOf>(this.url1 + '/setup/human-human');
+  }
+
+  performMove(bestOfGame: BestOf): Observable<BestOf> {
+    return this.http.post<any>(this.url1 + '/move/place-piece', bestOfGame);
+  }
+
+  performBestOf(bestOfGame: BestOf): Observable<BestOf> {
+    return this.http.post<any>(this.url1 + '/best-of/check', bestOfGame);
   }
 }

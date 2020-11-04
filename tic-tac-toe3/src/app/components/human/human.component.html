@@ -1,0 +1,44 @@
+<div>
+    <h1>Tic Tac Toe Level 3</h1>
+
+    <div class="pt-2"></div>
+    <span><b>Best of </b> 
+
+    <mat-form-field>
+        <mat-select name="roundVariable" [(value)]="selectedRound">
+            <mat-option 
+            *ngFor="let round of rounds" 
+            [value]="round.value"
+            (click)="setUpHumanHumanGame(round.viewValue)">
+                {{round.viewValue}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <b> games</b></span>
+
+    <div class="pt-2"></div>
+    <span><b>Player 1:</b> {{playerOne}}</span><br>
+
+    <div class="pt-2"></div>
+    <span><b>Player 2:</b> {{playerTwo}}</span>
+
+    <div class="pt-2"></div>
+    <div class="board-width">
+        <mat-grid-list cols="3" rowHeight="100px" gutterSize="4px">
+            <mat-grid-tile 
+                *ngFor="let tile of tiles"
+                [colspan]="tile.cols"
+                [rowspan]="tile.rows"
+                [style.background]="tile.color"
+                [ngStyle]="{'font-size': tile.font + 'px'}">
+                    {{tile.text}}
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
+
+    <div class="pt-2"></div>
+    <button class="btn btn-primary mb-3 new-game"
+            (click)="resetGame()">Reset Game</button>
+
+</div>

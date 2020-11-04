@@ -2,19 +2,21 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { GameComponent } from './components/game/game.component';
-import { GameService } from './services/game.service';
+import { MoveService } from './services/move.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AppRoutingModule, routingComponents } from './app-routing.module';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    GameComponent
+    routingComponents,
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     HttpClientModule,
     MaterialModule,
@@ -22,7 +24,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [GameService],
+  providers: [MoveService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
