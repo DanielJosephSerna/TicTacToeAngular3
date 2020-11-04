@@ -5,6 +5,7 @@ import { mockBestOf1, mockBestOf2, mockBestOf3, mockBestOf4, mockBestOf5 } from 
 import { BestOf } from 'src/app/models/bestof';
 import { MoveService } from 'src/app/services/move.service';
 import { ComputerComponent } from './computer.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('ComputerComponent', () => {
   let component: ComputerComponent;
@@ -35,7 +36,8 @@ describe('ComputerComponent', () => {
     
     await TestBed.configureTestingModule({
       imports: [
-        MaterialModule
+        MaterialModule,
+        BrowserAnimationsModule
       ],
       declarations: [ ComputerComponent ],
       providers: [
