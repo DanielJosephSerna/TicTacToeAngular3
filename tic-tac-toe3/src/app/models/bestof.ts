@@ -1,7 +1,7 @@
 import { SetUp } from './setup';
 
 export class BestOf {
-    setUp: SetUp
+    setUp: SetUp;
     totalGamesToPlay: number;
     score1: number;
     score2: number;

@@ -1,7 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Observable, of } from 'rxjs';
 import { MaterialModule } from 'src/app/material/material.module';
-import { mockBestOf1, mockBestOf2, mockBestOf3, mockBestOf4, mockBestOf5 } from 'src/app/mocks/mockBestOf';
+import { 
+  mockBestOf1, 
+  mockBestOf2, 
+  mockBestOf3, 
+  mockBestOf4, 
+  mockBestOf5,
+  mockBestOf7,
+  mockBestOf11,
+  mockBestOf12,
+  mockBestOf13 } from 'src/app/mocks/mockBestOf';
 import { BestOf } from 'src/app/models/bestof';
 import { MoveService } from 'src/app/services/move.service';
 import { ComputerComponent } from './computer.component';
@@ -13,19 +22,19 @@ describe('ComputerComponent', () => {
   let mockSetUpService: MockSetUpService;
 
   class MockSetUpService {
-    setUpHumanCompGame() :Observable<BestOf> {
+    setUpHumanCompGame(): Observable<BestOf> {
       return of();
     }
 
-    setUpHumanHumanGame() :Observable<BestOf> {
+    setUpHumanHumanGame(): Observable<BestOf> {
       return of();
     }
 
-    performMove() :Observable<BestOf> {
+    performMove(): Observable<BestOf> {
       return of();
     }
 
-    performBestOf() :Observable<BestOf> {
+    performBestOf(): Observable<BestOf> {
       return of();
     }
   }
@@ -33,7 +42,7 @@ describe('ComputerComponent', () => {
   beforeEach(async () => {
 
     mockSetUpService = new MockSetUpService();
-    
+
     await TestBed.configureTestingModule({
       imports: [
         MaterialModule,
@@ -85,5 +94,53 @@ describe('ComputerComponent', () => {
       expect(component.isCurrentGameOver).toBe(true);
     });
   });
-  
+
+  describe('setUpHumanCompGame', () => {
+    it('should return a new BestOf object for human comp game', () => {
+      spyOn(mockSetUpService, 'setUpHumanCompGame').and.returnValue(of(mockBestOf7));
+
+      component.setUpHumanCompGame(1);
+
+      expect(component.bestOf).toEqual(mockBestOf7);
+      expect(mockSetUpService.setUpHumanCompGame).toHaveBeenCalled();
+    });
+  });
+
+  describe('move', () => {
+    it('should check if selectedRound IS null', () => {
+      component.selectedRound = null;
+
+      component.move(0);
+
+      expect(component.selectedRound).toBeNull();
+    });
+
+    it('should check if selectedRound is NOT null and bestOf is NOT null', () => {
+      component.selectedRound = 1;
+      component.bestOf = mockBestOf11;
+
+      component.move(0);
+
+      expect(component.bestOf).toEqual(mockBestOf11);
+    });
+
+    it('should check if selectedRound is NOT null and bestOf isOver is NOT ONGOING', () => {
+      component.selectedRound = 1;
+      component.bestOf = mockBestOf12;
+
+      component.move(0);
+
+      expect(component.bestOf).toEqual(mockBestOf12);
+    });
+
+    it('should check if selectedRound is NOT null and bestOf.setUp status is NOT ONGOING', () => {
+      component.selectedRound = 1;
+      component.bestOf = mockBestOf13;
+
+      component.move(0);
+
+      expect(component.bestOf).toEqual(mockBestOf13);
+    });
+    
+  });
 });

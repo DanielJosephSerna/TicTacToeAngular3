@@ -18,10 +18,10 @@
     <b> games</b></span>
 
     <div class="pt-2"></div>
-    <span><b>Player 1:</b> {{playerOne}}</span><br>
+    <span><b>Player 1:</b> {{playerOne}}</span> <span style="margin-left:1em"><b>Score P1:</b> {{playerOneScore}}</span><br>
 
     <div class="pt-2"></div>
-    <span><b>Player 2:</b> {{playerTwo}}</span>
+    <span><b>Player 2:</b> {{playerTwo}}</span> <span style="margin-left:1em"><b>Score P2:</b> {{playerTwoScore}}</span><br>
 
     <div class="pt-2"></div>
     <div class="board-width">
@@ -31,7 +31,8 @@
                 [colspan]="tile.cols"
                 [rowspan]="tile.rows"
                 [style.background]="tile.color"
-                [ngStyle]="{'font-size': tile.font + 'px'}">
+                [ngStyle]="{'font-size': tile.font + 'px'}"
+                (click)="move(tile.position)">
                     {{tile.text}}
             </mat-grid-tile>
         </mat-grid-list>

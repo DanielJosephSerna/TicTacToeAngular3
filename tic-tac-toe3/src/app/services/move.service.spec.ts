@@ -2,7 +2,6 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { MoveService } from './move.service';
-import { SetUp } from '../models/setup';
 import { BestOf } from '../models/bestof';
 
 describe('MoveService', () => {
@@ -29,7 +28,7 @@ describe('MoveService', () => {
 
       const mockRequest = httpMock.expectOne('http://localhost:8080/setup/human-computer');
       expect(mockRequest.request.method).toBe('GET');
-      
+
       mockRequest.flush({
         isOver: 'ONGOING'
       });
@@ -54,7 +53,7 @@ describe('MoveService', () => {
   });
 
   it('should call POST /move/place-piece with performMove() and return an Observable of the result', () => {
-    
+
     let tempBestOf: BestOf;
 
     service.performMove( tempBestOf ).subscribe(data => {
@@ -68,7 +67,7 @@ describe('MoveService', () => {
       });
 
       httpMock.verify();
-    })
+    });
   });
 
   it('should call POST /best-of/check with performBestOf() and return an Observable of the result', () => {
