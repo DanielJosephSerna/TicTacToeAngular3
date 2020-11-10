@@ -10,7 +10,9 @@ import {
   mockBestOf7,
   mockBestOf11,
   mockBestOf12,
-  mockBestOf13 } from 'src/app/mocks/mockBestOf';
+  mockBestOf13,
+  mockBestOf16,
+  mockTiles4 } from 'src/app/mocks/mockBestOf';
 import { BestOf } from 'src/app/models/bestof';
 import { MoveService } from 'src/app/services/move.service';
 import { ComputerComponent } from './computer.component';
@@ -140,6 +142,17 @@ describe('ComputerComponent', () => {
       component.move(0);
 
       expect(component.bestOf).toEqual(mockBestOf13);
+    });
+
+    it('should check if tileSpace is NOT EMPTY', () => {
+      component.selectedRound = 1;
+      component.bestOf = mockBestOf16;
+      component.tiles = mockTiles4;
+
+      component.move(0);
+
+      expect(component.bestOf).toEqual(mockBestOf16);
+      expect(component.tiles).toEqual(mockTiles4);
     });
     
   });

@@ -10,7 +10,12 @@ import {
   mockBestOf6, 
   mockBestOf8,
   mockBestOf9,
-  mockBestOf10} from 'src/app/mocks/mockBestOf';
+  mockBestOf10,
+  mockBestOf14,
+  mockTiles1,
+  mockBestOf15,
+  mockTiles2,
+  mockTiles3} from 'src/app/mocks/mockBestOf';
 import { BestOf } from 'src/app/models/bestof';
 import { MoveService } from 'src/app/services/move.service';
 import { HumanComponent } from './human.component';
@@ -142,6 +147,39 @@ describe('HumanComponent', () => {
 
       expect(component.bestOf).toEqual(mockBestOf10);
     });
+
+    it('should check if tileSpace is NOT EMPTY', () => {
+      component.selectedRound = 1;
+      component.bestOf = mockBestOf14;
+      component.tiles = mockTiles1;
+
+      component.move(0);
+
+      expect(component.bestOf).toEqual(mockBestOf14);
+      expect(component.tiles).toEqual(mockTiles1);
+    });
+
+    // xit('should check if tileSpace is EMPTY', () => {
+    //   component.selectedRound = 1;
+    //   component.bestOf = mockBestOf15;
+    //   component.tiles = mockTiles3;
+
+    //   spyOn(mockSetUpService, 'performMove').and.returnValue(of(mockBestOf15));
+
+    //   component.move(0);
+
+    //   expect(component.bestOf).toEqual(mockBestOf15);
+    //   expect(component.tiles).toEqual(mockTiles3);
+    //   expect(mockSetUpService.performMove).toHaveBeenCalled();
+    //   /*
+    //   spyOn(mockSetUpService, 'setUpHumanHumanGame').and.returnValue(of(mockBestOf6));
+
+    //   component.setUpHumanHumanGame(1);
+
+    //   expect(component.bestOf).toEqual(mockBestOf6);
+    //   expect(mockSetUpService.setUpHumanHumanGame).toHaveBeenCalled();
+    //   */
+    // });
     
   });
 
